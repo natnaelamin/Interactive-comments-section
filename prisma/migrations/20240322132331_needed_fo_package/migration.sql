@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Comment" ALTER COLUMN "score" SET DATA TYPE TEXT;
