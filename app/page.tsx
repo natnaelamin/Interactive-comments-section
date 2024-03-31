@@ -56,6 +56,20 @@ export default async function Home() {
 
   }
 
+  async function deleteComment(formData: FormData){
+    "use server";
+
+    const inputId = formData.get("inputId") as string;
+
+    await prisma.comment.delete({
+      where:{
+        id: inputId
+      },
+    });
+
+    revalidatePath("/")
+  }
+
 
   
   return (
@@ -85,8 +99,9 @@ export default async function Home() {
                     {comment.isNew && <p className="text-white bg-blue-800 w-8 h-6 mt-3 rounded text-center ">you</p>}
                   </div>
                   <div className="text-right">
-                    {comment.isNew ? (<div className="flex gap-2"><button className="text-red-800 flex gap-1"><MdDelete  className="mt-1"/>delete</button>
-                    <button className="text-blue-800 flex gap-1 ml-2"><MdModeEditOutline  className="mt-1"/>edit</button> </div>)
+                    {comment.isNew ? (<form className="flex gap-2"><input type="text" value={comment.id} name="inputId" hidden/>
+                      <button formAction={deleteComment} className="text-red-800 flex gap-1"><MdDelete  className="mt-1"/>delete</button>
+                    <button className="text-blue-800 flex gap-1 ml-2"><MdModeEditOutline  className="mt-1"/>edit</button> </form>)
                     :<button className="text-blue-800 flex gap-1"><FaReplyAll className="mt-1"/>Replay</button>}
                   </div>
                 </div>
