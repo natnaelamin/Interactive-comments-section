@@ -8,9 +8,10 @@ import { Button } from "./ui/button";
 interface ReplyFormProps {
     toggleReply: () => void; // Function that doesn't take any arguments and doesn't return anything
     parid: string;
+    setReplyingToReply: any;
 }
 
-function ReplyForm({ toggleReply, parid }: ReplyFormProps) {
+function NestedRepForm({ toggleReply, parid, setReplyingToReply }: ReplyFormProps) {
     const formRef = useRef<HTMLFormElement>(null);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -18,10 +19,12 @@ function ReplyForm({ toggleReply, parid }: ReplyFormProps) {
         if (formRef.current) {
             const formData = new FormData(formRef.current);
             await replyFunction(formData);
-            formRef.current.reset();
+            formRef.current.reset();  
         }
-        toggleReply();// Toggle visibility after form submission  
-        
+        setTimeout(() => {
+            toggleReply(); // Toggle visibility after form submission
+            setReplyingToReply(false);
+        }, 3000);  
     };
 
     return (
@@ -37,4 +40,4 @@ function ReplyForm({ toggleReply, parid }: ReplyFormProps) {
     ); 
 }
 
-export default ReplyForm;
+export default NestedRepForm

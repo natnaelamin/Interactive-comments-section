@@ -31,11 +31,7 @@ export default async function Home() {
   const { topLevelComments, replies } = await getData();
   
   return (
-    <div className="py-[200px] px-[300px] bg-zinc-300">
-
-      <div className="w-[600px] mb-10 flex justify-center items-center">
-        <CommentForm />
-      </div> 
+    <div className="py-[50px] px-[300px] bg-zinc-300">
       {topLevelComments.map((comment) => (
         <div key={comment.id}>
           <div >
@@ -47,6 +43,9 @@ export default async function Home() {
   
         </div>
       ))}
+      <div className="w-[600px] mb-10 flex justify-center items-center">   
+        <CommentForm />
+      </div>
     </div>
   );
 }

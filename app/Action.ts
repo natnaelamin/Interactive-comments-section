@@ -72,7 +72,7 @@ export async function Create(formData: FormData){
     const score =  "0" as string; 
     const image = "/images/avatars/image-maxblagun.png" as string;
     const parentId = formData.get("inputParentId") as string;
-    console.log("Parent ID:", parentId);
+    
     
     await prisma.comment.create({
       data:{
