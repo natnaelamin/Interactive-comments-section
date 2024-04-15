@@ -31,21 +31,19 @@ export default async function Home() {
   const { topLevelComments, replies } = await getData();
   
   return (
-    <div className="py-[50px] px-[300px] bg-zinc-300">
+    <div className="py-[50px] px-2 md:px-[300px] bg-zinc-300">
+      <div className="w-full max-w-[600px] mb-10 flex justify-center items-center">    
+        <CommentForm />
+      </div>
       {topLevelComments.map((comment) => (
         <div key={comment.id}>
           <div >
             <div >
               <MainComment comment={comment} replies={replies.filter((reply) => reply.parentId === comment.id)}/>
             </div>
-
           </div>
-  
         </div>
-      ))}
-      <div className="w-[600px] mb-10 flex justify-center items-center">   
-        <CommentForm />
-      </div>
+      ))} 
     </div>
   );
 }

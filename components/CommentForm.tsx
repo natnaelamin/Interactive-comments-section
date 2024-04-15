@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useRef } from 'react'
-import { Create } from "@/app/Action"
-import { useFormState } from "react-dom"
+import React, { useRef } from 'react';
+import { Create } from "@/app/Action";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
 
@@ -15,12 +14,11 @@ function CommentForm() {
         await Create(formData);
         formRef.current?.reset();
     }}  className="grid gap-1 w-full max-w-[600px] rounded" ref={formRef}>
-        <Textarea placeholder="write your thoughts..." name="content" className="h-[120px] text-lg"/> 
+        <Textarea placeholder="Add a comment" name="content" className="h-[120px] text-lg px-3"/> 
         <div className="text-right">
             <Button variant="outline"  className=" w-24 rounded bg-blue-600 text-white hover:bg-blue-300"
-            type="submit">Post</Button>
-        </div>
-        
+            type="submit">Post</Button> 
+        </div>   
     </form>
   )
 }

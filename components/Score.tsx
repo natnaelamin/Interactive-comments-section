@@ -19,7 +19,7 @@ function Score({ score }: ScoreProps) {
       };  
 
   return (
-    <div className="grid gap-2 bg-zinc-300  rounded w-[60px] text-center py-5">
+    <div className="grid gap-2 bg-zinc-300 px-1  rounded md:w-[60px] w-[20px] text-center py-5">
       <button onClick={increase} className="text-blue-500 text-xl">+</button>
       <p className="text-blue-800">{count}</p>
       <button onClick={decrease} className="text-blue-500 text-xl">-</button>

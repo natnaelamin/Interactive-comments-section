@@ -15,7 +15,7 @@ function NestedRepButton({ toggleReply, user, setuser, setReplyingToReply }: Rep
     }
     return (
         <div>
-            <button type="button" onClick={handleToggle} className="text-blue-800 flex gap-1"><FaReplyAll className="mt-1"/>Replay</button>
+            <button type="button" onClick={handleToggle} className="text-blue-800 text-xs md:text-base flex gap-1"><FaReplyAll className="mt-1"/>Replay</button>
         </div>
     );
 }
