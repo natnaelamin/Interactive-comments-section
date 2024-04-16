@@ -57,7 +57,7 @@ const renderNestedReplies = (replies: repliesProps[]) => {
   return replies.map((reply) => (
     <div key={reply.id} className="">
       {/* Render the reply */}  
-      <div className="bg-white mb-5 md:p-5 p-2 rounded-xl flex md:gap-5 gap-2 md:w-full w-[320px] ml-8 md:ml-10">
+      <div className="bg-white mb-5 md:p-5 p-2 rounded-xl flex md:gap-5 gap-2 md:w-[710px] w-[320px] ml-8 md:ml-10">
         <Score score={reply.score} />
         <form action={edit}>
           <div className="flex justify-between">
@@ -82,10 +82,10 @@ const renderNestedReplies = (replies: repliesProps[]) => {
               )}
             </div>
           </div>
-          {replyingToReply  ? <div className="flex flex-grow w-[280px] text-sm md:text-base px-2 md:w-[650px]">
+          {replyingToReply  ? <div className="flex flex-grow w-[280px] text-sm md:text-base px-2 md:w-[640px]">
           <Textarea name="editinput" defaultValue={`@${store} ${reply.content}`} className="text-slate-500 text-md border-none"/>
          </div>:
-          <div className="flex flex-grow w-[280px] text-sm md:text-base px-2 md:w-[650px]">
+          <div className="flex flex-grow w-[280px] text-sm md:text-base px-2 md:w-[640px]">
           <Textarea name="editinput" defaultValue={`@${comment.username} ${reply.content}`} className="text-slate-500 text-md border-none"/>
          </div>}
         </form>

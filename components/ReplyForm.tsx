@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { replyFunction } from "@/app/Action";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
@@ -12,6 +12,11 @@ interface ReplyFormProps {
 
 function ReplyForm({ toggleReply, parid }: ReplyFormProps) {
     const formRef = useRef<HTMLFormElement>(null);
+    const [inputValue, setInputValue] = useState("");
+
+    const handleInput = (event: React.ChangeEvent<HTMLTextAreaElement>)=>{
+        setInputValue(event.target.value);
+    }
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -25,12 +30,11 @@ function ReplyForm({ toggleReply, parid }: ReplyFormProps) {
 
     return (
       <form onSubmit={handleSubmit} className="grid gap-1 w-full max-w-[600px] rounded" ref={formRef}>
-          <Textarea placeholder="Add a comment" name="content" className="md:h-[120px] h-[80px] text-sm md:text-lg px-3"/> 
+          <Textarea placeholder="Add a comment" onChange={handleInput} name="content" className="md:h-[120px] h-[80px] text-sm md:text-lg px-3"/> 
           <input type="text" value={parid} name="inputParentId" hidden/>
           <div className="text-right">
-            <Button variant="outline" className="md:w-24 w-14 text-xs md:text-base rounded bg-blue-600 text-white hover:bg-blue-300"
+            <Button variant="outline" disabled={!inputValue} className="md:w-24 w-14 text-xs md:text-base rounded bg-blue-600 text-white hover:bg-blue-300"
             type="submit">Post</Button>
-            <Button variant="outline" onClick={toggleReply} className="md:w-24 w-14 text-xs md:text-base rounded bg-green-600 text-white hover:bg-blue-300">Cancel</Button>
           </div>
       </form>
     ); 
