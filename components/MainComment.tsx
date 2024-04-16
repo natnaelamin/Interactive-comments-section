@@ -23,7 +23,6 @@ interface commentProps {
   }
 
   interface repliesProps {
-     // Optional replies property
         id: string;
         content: string;
         username: string;
@@ -82,11 +81,13 @@ const renderNestedReplies = (replies: repliesProps[]) => {
               )}
             </div>
           </div>
-          {replyingToReply  ? <div className="flex flex-grow w-[280px] text-sm md:text-base px-2 md:w-[640px]">
-          <Textarea name="editinput" defaultValue={`@${store} ${reply.content}`} className="text-slate-500 text-md border-none"/>
+          {replyingToReply  ? <div className=" w-[280px] text-sm md:text-base px-2 md:w-[640px]">
+          <p className="text-left text-slate-500">replying to <span className="text-blue-800">@{store}</span></p>
+          <Textarea name="editinput" defaultValue={reply.content} className="text-slate-500 text-md border-none"/>
          </div>:
-          <div className="flex flex-grow w-[280px] text-sm md:text-base px-2 md:w-[640px]">
-          <Textarea name="editinput" defaultValue={`@${comment.username} ${reply.content}`} className="text-slate-500 text-md border-none"/>
+          <div className=" w-[280px] text-sm md:text-base px-2 md:w-[640px]">
+            <p className="text-left text-slate-500">replying to <span className="text-blue-800">@{comment.username}</span></p>
+          <Textarea name="editinput" defaultValue={reply.content} className="text-slate-500 text-md border-none"/>
          </div>}
         </form>
       </div>
