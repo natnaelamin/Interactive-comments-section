@@ -13,6 +13,16 @@ interface Comment {
   isNew: boolean;
  }
 
+ interface Reply {
+  username: string;
+  id: string;
+  content: string;
+  image: string;
+  score: string;
+  parentId: string | null;
+  isNew: boolean;
+ }
+
 
 async function getData(){
   const data = await prisma.comment.findMany({
@@ -49,7 +59,7 @@ export default async function Home() {
         <div key={comment.id}>
           <div >
             <div >
-              <MainComment comment={comment} replies={replies.filter((reply) => reply.parentId === comment.id)}/>
+              <MainComment comment={comment} replies={replies.filter((reply: Reply) => reply.parentId === comment.id)}/>
             </div>
           </div>
         </div>
