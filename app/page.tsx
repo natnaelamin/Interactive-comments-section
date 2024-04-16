@@ -3,6 +3,16 @@ import prisma from "./db";
 import CommentForm from "@/components/CommentForm";
 import MainComment from "@/components/MainComment";
 
+interface Comment {
+  username: string;
+  id: string;
+  content: string;
+  image: string;
+  score: string;
+  parentId: string | null;
+  isNew: boolean;
+ }
+
 
 async function getData(){
   const data = await prisma.comment.findMany({
@@ -20,8 +30,8 @@ async function getData(){
     },
   });
 
-  const topLevelComments = data.filter((comment) => comment.parentId === null);
-  const replies = data.filter((comment) => comment.parentId !== null);
+  const topLevelComments = data.filter((comment: Comment) => comment.parentId === null);
+  const replies = data.filter((comment: Comment) => comment.parentId !== null);
 
   return { topLevelComments, replies };
 }
