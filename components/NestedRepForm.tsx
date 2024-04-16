@@ -29,7 +29,7 @@ function NestedRepForm({ toggleReply, parid, setReplyingToReply }: ReplyFormProp
         setTimeout(() => {
             toggleReply(); // Toggle visibility after form submission
             setReplyingToReply(false);
-        }, 6000);  
+        }, 1000);  
     };
 
     return (
