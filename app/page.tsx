@@ -45,7 +45,7 @@ export default async function Home() {
       <div className="w-full max-w-[600px] mb-10 flex justify-center items-center">    
         <CommentForm />
       </div>
-      {topLevelComments.map((comment) => (
+      {topLevelComments.map((comment: Comment) => (
         <div key={comment.id}>
           <div >
             <div >
