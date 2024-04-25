@@ -3,7 +3,7 @@ import prisma from "./db";
 import CommentForm from "@/components/CommentForm";
 import MainComment from "@/components/MainComment";
 
-interface Comment {
+interface Commenttype {
   username: string;
   id: string;
   content: string;
@@ -12,17 +12,6 @@ interface Comment {
   parentId: string | null;
   isNew: boolean;
  }
-
- interface Reply {
-  username: string;
-  id: string;
-  content: string;
-  image: string;
-  score: string;
-  parentId: string | null;
-  isNew: boolean;
- }
-
 
 async function getData(){
   const data = await prisma.comment.findMany({
@@ -40,8 +29,8 @@ async function getData(){
     },
   });
 
-  const topLevelComments = data.filter((comment: Comment) => comment.parentId === null);
-  const replies = data.filter((comment: Comment) => comment.parentId !== null);
+  const topLevelComments = data.filter((comment: Commenttype) => comment.parentId === null);
+  const replies = data.filter((comment: Commenttype) => comment.parentId !== null);
 
   return { topLevelComments, replies };
 }
@@ -55,11 +44,11 @@ export default async function Home() {
       <div className="w-full max-w-[600px] mb-10 flex justify-center items-center">    
         <CommentForm />
       </div>
-      {topLevelComments.map((comment: Comment) => (
+      {topLevelComments.map((comment: Commenttype) => (
         <div key={comment.id}>
           <div >
             <div >
-              <MainComment comment={comment} replies={replies.filter((reply: Reply) => reply.parentId === comment.id)}/>
+              <MainComment comment={comment} replies={replies.filter((reply: Commenttype) => reply.parentId === comment.id)}/>
             </div>
           </div>
         </div>
