@@ -1,58 +1,18 @@
-
-import prisma from "./db";
-import CommentForm from "@/components/CommentForm";
-import MainComment from "@/components/MainComment";
-
-interface Commenttype {
-  username: string;
-  id: string;
-  content: string;
-  image: string;
-  score: string;
-  parentId: string | null;
-  isNew: boolean;
- }
-
-async function getData(){
-  const data = await prisma.comment.findMany({
-    select:{
-      username: true,
-      id: true,
-      content: true,
-      image: true,
-      score: true,
-      parentId: true,
-      isNew: true,
-    },
-    orderBy: {
-      createdAt: 'asc', 
-    },
-  });
-
-  const topLevelComments = data.filter((comment: Commenttype) => comment.parentId === null);
-  const replies = data.filter((comment: Commenttype) => comment.parentId !== null);
-
-  return { topLevelComments, replies };
-}
+import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
+import { redirect } from "next/navigation";
 
 export default async function Home() {
 
-  const { topLevelComments, replies } = await getData();
+  const {isAuthenticated} = getKindeServerSession();
+
+  if (await isAuthenticated()){
+    redirect("/dashboard")
+  }
   
   return (
-    <div className="py-[50px] px-2 md:px-[300px] bg-zinc-300">
-      <div className="w-full max-w-[600px] mb-10 flex justify-center items-center">    
-        <CommentForm />
-      </div>
-      {topLevelComments.map((comment: Commenttype) => (
-        <div key={comment.id}>
-          <div >
-            <div >
-              <MainComment comment={comment} replies={replies.filter((reply: Commenttype) => reply.parentId === comment.id)}/>
-            </div>
-          </div>
-        </div>
-      ))} 
-    </div>
+    <main className="text-center flex-1 py-40">
+      <h1 className="md:text-5xl text-2xl font-bold">Welcome to our Interactive Comments Section</h1>
+      <p className="md:text-3xl text-xl pt-4 pb-7">Enjoy your stay here!</p>
+    </main>
   );
 }

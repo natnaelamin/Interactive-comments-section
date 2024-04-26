@@ -51,13 +51,11 @@ const toggleInputField = () => {
   setShow(!show);
 }
 
-console.log(replyingToReply)
-
 const renderNestedReplies = (replies: repliesProps[]) => {
   return replies.map((reply) => (
     <div key={reply.id} className="">
       {/* Render the reply */}  
-      <div className="bg-white mb-5 md:p-5 p-2 rounded-xl flex md:gap-5 gap-2 md:w-[710px] w-[320px] ml-8 md:ml-10">
+      <div className=" mb-5 md:p-5 p-2 rounded-xl flex md:gap-5 gap-2 md:w-[710px] w-[320px] ml-8 md:ml-10 border-2">
         <Score score={reply.score} />
         <form action={edit}>
           <div className="flex justify-between">
@@ -102,7 +100,7 @@ const renderNestedReplies = (replies: repliesProps[]) => {
 
 return (
   <div className="grid gap-5">
-    <div className="bg-white mb-5 md:p-5 p-2 rounded-xl flex gap-2 md:w-full w-[350px] md:gap-5">
+    <div className=" mb-5 md:p-5 p-2 rounded-xl flex gap-2 md:w-full w-[350px] md:gap-5 border-2">
       <Score score={comment.score} />
       <form action={edit} className="flex-grow">
         <div className="flex justify-between w-full">

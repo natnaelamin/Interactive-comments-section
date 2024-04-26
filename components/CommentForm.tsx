@@ -25,7 +25,7 @@ function CommentForm() {
 
     return (
         <form onSubmit={handleSubmit} className="grid gap-1 w-full max-w-[600px] rounded" ref={formRef}>
-            <Textarea onChange={handleInputChange} placeholder="Add a comment" name="content" className="h-[120px] text-base md:text-lg px-3"/> 
+            <Textarea onChange={handleInputChange} placeholder="Add a comment" name="content" className="h-[120px] text-base md:text-lg px-3 border-2"/> 
             <div className="text-right">
                 <Button variant="outline" className="w-24 rounded bg-blue-600 text-white hover:bg-blue-300"
                         type="submit" disabled={!inputValue}>Post</Button> 
