@@ -2,6 +2,9 @@
 import prisma from "../db";
 import CommentForm from "@/components/CommentForm";
 import MainComment from "@/components/MainComment";
+import { Button } from "@/components/ui/button";
+import {LoginLink, getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
+import { RedirectType, redirect } from "next/navigation";
 
 interface Commenttype {
   username: string;
@@ -38,8 +41,12 @@ async function getData(){
 export default async function DashboardPage() {
 
   const { topLevelComments, replies } = await getData();
+
+  const {isAuthenticated} = getKindeServerSession();
+
   
-  return (
+  
+  return(await isAuthenticated()) ? (
     <div className="py-[50px] px-2 md:px-[300px]">
       <div className="w-full max-w-[600px] mb-10 flex justify-center items-center">    
         <CommentForm />
@@ -54,5 +61,10 @@ export default async function DashboardPage() {
         </div>
       ))} 
     </div>
-  );
+  ):
+  (
+    <div className="flex justify-center items-center pt-24">
+      This page is protected, please <Button className="mx-1 h-[4vh]"> <LoginLink postLoginRedirectURL='/dashboard'>Login</LoginLink></Button> to view it
+    </div>
+  )
 }
