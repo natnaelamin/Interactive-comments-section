@@ -45,19 +45,13 @@ export async function Create(formData: FormData){
 
     const content = formData.get("editinput") as string;
     const inputId = formData.get("inputId") as string;
-    const username = "Anonymous" as string; 
-    const score =  "0" as string; 
-    const image = "/images/avatars/image-maxblagun.png" as string;
 
     await prisma.comment.update({
       where: {
         id: inputId,
       },
       data:{
-          content,
-          username,
-          score,
-          image, 
+          content 
       },
     });
 

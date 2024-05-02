@@ -4,7 +4,7 @@ import CommentForm from "@/components/CommentForm";
 import MainComment from "@/components/MainComment";
 import { Button } from "@/components/ui/button";
 import {LoginLink, getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
-import { RedirectType, redirect } from "next/navigation";
+
 
 interface Commenttype {
   username: string;

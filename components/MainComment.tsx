@@ -23,7 +23,6 @@ interface commentProps {
   }
 
   interface repliesProps {
-     // Optional replies property
         id: string;
         content: string;
         username: string;
@@ -33,8 +32,7 @@ interface commentProps {
         isNew: boolean;
       }[];
   
-
-
+      
 function MainComment({ comment, replies }: { comment: commentProps; replies: repliesProps[] }) {
 
   const [isVisible, setIsVisible] = useState(false)
